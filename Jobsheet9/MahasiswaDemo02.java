@@ -10,8 +10,9 @@ public class MahasiswaDemo02 {
             System.out.println("\nMenu:");
             System.out.println("1. Mengumpulkan Tugas");
             System.out.println("2. Menilai Tugas");
-            System.out.println("3. Melihat Tugas Teratas");
+            System.out.println("3. Melihat Tugas Teratas dan Terbawah");
             System.out.println("4. Melihat Daftar Tugas");
+            System.out.println("5. Lihat Jumlah Tugas yang Sudah Dikumpulkan");
             System.out.print("Pilih: ");
             pilih = scan.nextInt();
             scan.nextLine();
@@ -35,11 +36,15 @@ public class MahasiswaDemo02 {
                         int nilai = scan.nextInt();
                         dinilai.tugasDinilai(nilai);
                         System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+                        String biner = stack.konversiDesimalKeBiner(nilai);
+                        System.out.println("Nilai Biner Tugas: " + biner);
                     }
                     break;
                 case 3:
-                    Mahasiswa02 lihat = stack.peek();
+                    Mahasiswa02 lihat = stack.peekAtas();
+                    Mahasiswa02 lihat2 = stack.peekBawah();
                     if (lihat != null) {
+                        System.out.println("Tugas pertama dikumpulkan oleh " + lihat2.nama);
                         System.out.println("Tugas terakhir dikumpulkan oleh " + lihat.nama);
                     }
                     break;
@@ -47,6 +52,9 @@ public class MahasiswaDemo02 {
                     System.out.println("Daftar semua tugas:");
                     System.out.println("Nama\tNIM\tKelas");
                     stack.print();
+                    break;
+                case 5:
+                    System.out.println("Jumlah tugas yang sudah dikumpulkan: " + stack.jumlahTugas());
                     break;
                 default:
                     System.out.println("Pilihan tidak valid.");
